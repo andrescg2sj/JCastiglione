@@ -25,7 +25,7 @@ import org.sj.tools.jcastiglione.animation.AnimableRectangle2D;
 import org.sj.tools.jcastiglione.figure.FigRectangle;
 import org.sj.tools.jcastiglione.figure.FigText;
 import org.sj.tools.jcastiglione.figure.Figura;
-import org.sj.tools.jcastiglione.io.Graf3DocLoader;
+import org.sj.tools.jcastiglione.io.JCgDocLoader;
 import org.sj.tools.jcastiglione.io.XMLGraf3Doc;
 import org.sj.tools.jcastiglione.io.load.AnimRectLoader;
 import org.sj.tools.jcastiglione.io.save.SrzAnimableRectangle2D;
@@ -73,7 +73,7 @@ public class TestGraf3Doc {
 
 	@Test
 	public void testingLoad() {
-		Graf3DocLoader docl = new Graf3DocLoader();
+		JCgDocLoader docl = new JCgDocLoader();
 		try {
 			docl.loadXML("test/test.xml");
 			Layer ly = docl.getCurrentLayer();
@@ -159,7 +159,7 @@ public class TestGraf3Doc {
 	
 	@Test
 	public void testingLoadText() {
-		Graf3DocLoader docl = new Graf3DocLoader();
+		JCgDocLoader docl = new JCgDocLoader();
 		try {
 			docl.loadXML("test/testtext.xml");
 			Layer ly = docl.getCurrentLayer();
@@ -214,7 +214,7 @@ public class TestGraf3Doc {
 		String filename = "test/testtworect.xml";
 		FigRectangle r[] = genManyRect();
 		saveMany(filename,r);
-		Graf3DocLoader docl = new Graf3DocLoader();
+		JCgDocLoader docl = new JCgDocLoader();
 		try {
 			docl.loadXML(filename);
 			Layer ly = docl.getCurrentLayer();
@@ -274,7 +274,7 @@ public class TestGraf3Doc {
 		String filename = "test/testmanytext.xml";
 		FigText r[] = genManyText();
 		saveMany(filename,r);
-		Graf3DocLoader docl = new Graf3DocLoader();
+		JCgDocLoader docl = new JCgDocLoader();
 		try {
 			docl.loadXML(filename);
 			Layer ly = docl.getCurrentLayer();
@@ -300,7 +300,7 @@ public class TestGraf3Doc {
 	@Test
 	public void testingLoadTwo() throws Exception {
 		saveTwo();
-		Graf3DocLoader docl = new Graf3DocLoader();
+		JCgDocLoader docl = new JCgDocLoader();
 		docl.loadXML("test/testtwo.xml");
 		Layer ly = docl.getCurrentLayer();
 		assertEquals("num figuras", 2, ly.numFiguras());
@@ -378,7 +378,7 @@ public class TestGraf3Doc {
 	@Test
 	public void testingLoadSeveral() {
 		
-		Graf3DocLoader docl = new Graf3DocLoader();
+		JCgDocLoader docl = new JCgDocLoader();
 		try {
 			docl.loadXML("test/pruebatexto2.xml");
 			Layer ly = docl.getCurrentLayer();

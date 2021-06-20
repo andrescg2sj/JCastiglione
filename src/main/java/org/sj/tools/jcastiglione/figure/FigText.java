@@ -39,7 +39,6 @@ public class FigText extends FigRectBounded {
 
 	private static final String PARAGRAPH_SPLIT_REGEX = "(?m)(?=^\\s{4})";
 	
-	@Override
 	public void draw(Graphics g, ScrollConverter sc) {
 		if(!esVisible()) return;
 		Rectangle2D tr = rect.getDefaultValue();

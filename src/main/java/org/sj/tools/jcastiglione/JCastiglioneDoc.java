@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 import org.sj.tools.jcastiglione.animation.FFAnimationExport;
 import org.sj.tools.jcastiglione.animation.PNGAnimationExport;
@@ -32,7 +33,7 @@ import java.io.IOException;
 
 public class JCastiglioneDoc implements Doc {
 	
-	
+	private static Logger log = Logger.getLogger("JCastiglioneDoc");
 	
 	public final static int REQUEST_DOCSIZE = 1;
 	public final static int REQUEST_FIGURAS = 2;
@@ -158,10 +159,14 @@ public class JCastiglioneDoc implements Doc {
 	}
 	
 	public void createImage(Vector2D cent, String filename) {
-		FigImage i = new FigImage(cent, filename);
-		/* presets */
-		i.setVerLinea(false);
-		prepareAndAdd(i);
+		try {
+			FigImage i = new FigImage(cent, filename);
+			/* presets */
+			i.setVerLinea(false);
+			prepareAndAdd(i);
+		} catch(IOException ioe) {
+			log.warning("Could not create image figure: " + ioe.getMessage());
+		}
 	}
 	
 	

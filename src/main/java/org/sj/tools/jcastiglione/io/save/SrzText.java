@@ -15,7 +15,7 @@ public class SrzText extends FigText implements Serializable {
 		super(ft);
 	}
 	
-	@Override
+	//@Override
 	public void serialize(XMLStreamWriter xsw) throws XMLStreamException {
 		xsw.writeStartElement("textbox");
 		Rectangle2D r = this.getRect();

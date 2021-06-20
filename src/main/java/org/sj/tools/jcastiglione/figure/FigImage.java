@@ -33,11 +33,11 @@ public class FigImage extends FigRectBounded {
 	 * @param filename	 String con el nombre del archivo
 	 *							que contiene la imagen
 	 */
-	public FigImage(Vector2D topleft, String filename) {
+	public FigImage(Vector2D topleft, String filename) throws IOException {
 			
 		nombre = filename;
 		/* cargar imagen y guardar en img */
-		try {
+		//try {
 			System.out.println("ARCHIVO:"+filename);
 			File imgFile = new File(filename);
 			imgData = ImageIO.read(imgFile);
@@ -46,13 +46,15 @@ public class FigImage extends FigRectBounded {
 				System.out.println("img NULL");
 				return;
 			}
-		} catch(Exception ex) {
+			Rectangle2D r = new Rectangle2D.Float(topleft.getX(),topleft.getY(), imgData.getWidth(null), imgData.getHeight(null));
+			init(r);
+
+
+		/*} catch(Exception ex) {
 			System.out.println("Fallo cargando imagen: \n"+ex.toString());
 			imgData = null;
-		}
+		}*/
 		
-		Rectangle2D r = new Rectangle2D.Float(topleft.getX(),topleft.getY(), imgData.getWidth(null), imgData.getHeight(null));
-		init(r);
 		
 	}
 	

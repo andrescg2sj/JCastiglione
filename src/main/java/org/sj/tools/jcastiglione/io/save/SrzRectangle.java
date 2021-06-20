@@ -17,7 +17,7 @@ public class SrzRectangle extends FigRectangle implements Serializable {
 	}
 	
 	
-	@Override
+	//@Override
 	public void serialize(XMLStreamWriter xsw) throws XMLStreamException {
 		xsw.writeStartElement("rect");
 		Rectangle2D r = this.getRect();

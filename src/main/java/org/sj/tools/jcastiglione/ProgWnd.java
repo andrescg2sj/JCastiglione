@@ -23,7 +23,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
-import org.sj.tools.jcastiglione.io.Graf3DocLoader;
+import org.sj.tools.jcastiglione.io.JCgDocLoader;
 import org.sj.tools.jcastiglione.io.XMLGraf3Doc;
 
 import java.util.logging.Logger;
@@ -185,7 +185,7 @@ import java.awt.Image;
 
    public void loadXML(String filename) throws XMLStreamException, IOException {
 	   
-	   Graf3DocLoader docl = new Graf3DocLoader();
+	   JCgDocLoader docl = new JCgDocLoader();
 	   
 	   docl.loadXML(filename);
 
@@ -290,7 +290,7 @@ import java.awt.Image;
                 try
                 {
                 	log.info("Loading XML");
-                   Graf3DocLoader docl = new Graf3DocLoader();
+                   JCgDocLoader docl = new JCgDocLoader();
                    docl.loadXML(total);
                    log.info("copy doc");
                    doc.copy(docl);

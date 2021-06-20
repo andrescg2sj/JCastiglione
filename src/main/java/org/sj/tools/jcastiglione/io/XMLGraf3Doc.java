@@ -60,7 +60,7 @@ public class XMLGraf3Doc implements Serializable {
 	   }
 
 	
-	@Override
+	//@Override
 	public void serialize(XMLStreamWriter xsw) throws XMLStreamException {
 		//xsw.writeStartElement("http://test", doc);
 		xsw.writeStartElement("doc");
@@ -128,10 +128,10 @@ public class XMLGraf3Doc implements Serializable {
 
 	public static Color readColor(XMLStreamReader reader) throws XMLStreamException 
 	{
-		Graf3DocLoader.assertState("color",reader);
-        int R = Graf3DocLoader.stoi(reader.getAttributeValue(null, "R"));
-        int G = Graf3DocLoader.stoi(reader.getAttributeValue(null, "G"));
-        int B = Graf3DocLoader.stoi(reader.getAttributeValue(null, "B"));
+		JCgDocLoader.assertState("color",reader);
+        int R = JCgDocLoader.stoi(reader.getAttributeValue(null, "R"));
+        int G = JCgDocLoader.stoi(reader.getAttributeValue(null, "G"));
+        int B = JCgDocLoader.stoi(reader.getAttributeValue(null, "B"));
          
         while (reader.hasNext()) {
             int eventType = reader.next();
@@ -140,7 +140,7 @@ public class XMLGraf3Doc implements Serializable {
                 	throw new XMLStreamException("Color: no inner elements expeceted.");
 
                 case XMLStreamReader.END_ELEMENT:
-                	Graf3DocLoader.assertState("color", reader);
+                	JCgDocLoader.assertState("color", reader);
                     return new Color(R,G,B);
             }
         }

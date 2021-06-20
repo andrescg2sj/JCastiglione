@@ -41,7 +41,7 @@ public class JCastiglioneApp {
 		doc.setView(view);
 		
 		// Crea la ventana principal y la muestra
-		ProgWnd pv = new ProgWnd("Graf 3", doc, view);
+		ProgWnd pv = new ProgWnd("JCastiglione", doc, view);
 		pv.setVisible(true);
 	}
 	

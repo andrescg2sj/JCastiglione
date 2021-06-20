@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione.io.test;
+package org.sj.tools.jcastiglione.io;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +26,7 @@ public class TestFigImage {
 	FigImage testImage;
 	String testXMLFile = "test/image.xml";
 	
-	public TestFigImage() {
+	public TestFigImage() throws IOException {
 		testImage = new FigImage(new Vector2D(20,10),"test/image.png");
 	}
 
