@@ -8,13 +8,13 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.sj.tools.jcastiglione.animation.AnimableRectangle2D;
 import org.sj.tools.jcastiglione.animation.ValKeyFrame;
-import org.sj.tools.jcastiglione.io.Graf3DocLoader;
+import org.sj.tools.jcastiglione.io.JCgDocLoader;
 
 public class AnimRectLoader extends AnimableRectangle2D {
 	
 
 	public AnimableRectangle2D load(XMLStreamReader reader) throws XMLStreamException {
-		Graf3DocLoader.assertState("anim", reader);
+		JCgDocLoader.assertState("anim", reader);
 		
 		AnimableRectangle2D ar = new AnimableRectangle2D();
 		String status = null;

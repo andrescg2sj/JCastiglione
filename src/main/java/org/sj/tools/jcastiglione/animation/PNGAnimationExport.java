@@ -23,7 +23,6 @@ public class PNGAnimationExport implements AnimationExport {
 		
 	}
 	
-	@Override
 	public void push(BufferedImage img) {
 		File file = new File(insertNumber(filename,frame));
 		try {

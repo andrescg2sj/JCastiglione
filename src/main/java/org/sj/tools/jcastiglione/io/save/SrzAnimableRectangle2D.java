@@ -16,7 +16,6 @@ public class SrzAnimableRectangle2D extends AnimableRectangle2D implements Seria
 		this.copyAnim(r);
 	}
 	
-	@Override
 	public void serialize(XMLStreamWriter xsw) throws XMLStreamException {
 		xsw.writeStartElement("anim");
 		//writeDefault(xsw);

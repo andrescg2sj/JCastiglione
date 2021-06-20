@@ -24,7 +24,7 @@ public class SrzImage extends FigImage implements Serializable {
 	}
 	
 	
-	@Override
+	//@Override
 	public void serialize(XMLStreamWriter xsw) throws XMLStreamException {
 		xsw.writeStartElement("img");
 		Rectangle2D r = this.getBounds();

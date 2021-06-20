@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,20 +29,20 @@ import java.util.logging.Logger;
  * 
  */
 
-public class Graf3DocLoader extends JCastiglioneDoc {
+public class JCgDocLoader extends JCastiglioneDoc {
 	
 	//Logger log = Logger.getLogger(this.getClass().getName());
 	Logger log = Logger.getLogger("Graf3DocLoader");
 	
 	FigRectangleLoader rectLoader = new FigRectangleLoader();
 	
-	public Graf3DocLoader() {
+	public JCgDocLoader() {
 		//TODO: private constructor for Graf3Doc without parameters
 		super(new Dimension());
 		log.setLevel(Level.FINE);
 	}
 	
-	public Graf3DocLoader(Dimension d) {
+	public JCgDocLoader(Dimension d) {
 		super(d);
 		log.setLevel(Level.FINE);
 	}
@@ -79,7 +82,7 @@ public class Graf3DocLoader extends JCastiglioneDoc {
 	                    }
 	                    break;
 	                case XMLStreamReader.END_ELEMENT:
-	                	Graf3DocLoader.assertState("text", reader);
+	                	JCgDocLoader.assertState("text", reader);
 	                    break;
 	            }
 	        }
@@ -188,8 +191,14 @@ public class Graf3DocLoader extends JCastiglioneDoc {
 
 	}
 	
-	public static float stof(String s) {
-		return Float.parseFloat(s);
+	public static float stof(String s) throws ParseException {
+		//TODO: make localization (decimal dot or comma) configurable
+		DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+		symbols.setDecimalSeparator(',');
+		DecimalFormat format = new DecimalFormat("0.#");
+		format.setDecimalFormatSymbols(symbols);
+		return format.parse(s).floatValue();
+		//return Float.parseFloat(s);
 	}
 	
 	
@@ -198,35 +207,40 @@ public class Graf3DocLoader extends JCastiglioneDoc {
 	private FigText readText(XMLStreamReader reader) throws XMLStreamException{
 		assertState("textbox",reader);
 		//TODO: store and load center ...
-        float x = stof(reader.getAttributeValue(null, "x"));
-        float y = stof(reader.getAttributeValue(null, "y"));
-        float width = stof(reader.getAttributeValue(null, "w"));
-        float height = stof(reader.getAttributeValue(null, "h"));
-        
-        //TODO: constructor with 'center' paramenters.
-        FigText tbox = new FigText(x,y,width,height);
-         
-        String buffer = "";
-        while (reader.hasNext()) {
-            int eventType = reader.next();
-            String elementName = reader.getLocalName();
-            log.fine("tb /Status:"+elementName );
-            switch (eventType) {
-                case XMLStreamReader.START_ELEMENT:
-                	
-                    if (elementName.equals("text")) {
-                    	String text = readCharacters(reader);
-                    	tbox.setText(text);
-                    }else {
-                    	throw new XMLStreamException("Unexpected element inside textbox");
-                    }
-                    break;
+		try {
+	        float x = stof(reader.getAttributeValue(null, "x"));
+	        float y = stof(reader.getAttributeValue(null, "y"));
+	        float width = stof(reader.getAttributeValue(null, "w"));
+	        float height = stof(reader.getAttributeValue(null, "h"));
+	        
+	        //TODO: constructor with 'center' paramenters.
+	        FigText tbox = new FigText(x,y,width,height);
+	         
+	        String buffer = "";
+	        while (reader.hasNext()) {
+	            int eventType = reader.next();
+	            String elementName = reader.getLocalName();
+	            log.fine("tb /Status:"+elementName );
+	            switch (eventType) {
+	                case XMLStreamReader.START_ELEMENT:
+	                	
+	                    if (elementName.equals("text")) {
+	                    	String text = readCharacters(reader);
+	                    	tbox.setText(text);
+	                    }else {
+	                    	throw new XMLStreamException("Unexpected element inside textbox");
+	                    }
+	                    break;
+	
+	                case XMLStreamReader.END_ELEMENT:
+	                	//assertState("textbox",reader);
+	                    return tbox;
+	            }
+	        }
+		} catch(ParseException pe) {
+			throw new XMLStreamException(pe);
+		}
 
-                case XMLStreamReader.END_ELEMENT:
-                	//assertState("textbox",reader);
-                    return tbox;
-            }
-        }
         throw new XMLStreamException("Premature end of file");
 	
 }
