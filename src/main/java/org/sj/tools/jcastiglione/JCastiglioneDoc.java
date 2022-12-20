@@ -14,6 +14,11 @@ import org.sj.tools.jcastiglione.figure.FigRectangle;
 import org.sj.tools.jcastiglione.figure.FigText;
 import org.sj.tools.jcastiglione.figure.Figura;
 import org.sj.tools.jcastiglione.figure.Linea;
+import org.sj.tools.jcastiglione.gui.JCastiglioneView;
+import org.sj.tools.jcastiglione.gui.ScrollRegion;
+import org.sj.tools.jcastiglione.gui.ScrollView;
+import org.sj.tools.jcastiglione.gui.SelectionItem;
+import org.sj.tools.jcastiglione.gui.View;
 import org.sj.tools.jcastiglione.io.XMLGraf3Doc;
 
 import java.awt.Point;

@@ -3,6 +3,9 @@ package org.sj.tools.jcastiglione;
 import java.awt.Dimension;
 import java.awt.Frame;
 
+import org.sj.tools.jcastiglione.gui.JCastiglioneView;
+import org.sj.tools.jcastiglione.gui.ProgWnd;
+
 public class JCastiglioneApp {
 	// tamaÃ±o por defecto de la vista
 	public static final int VIEW_WIDTH = 475;

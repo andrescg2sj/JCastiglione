@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 import java.awt.*;
 import java.awt.event.*;

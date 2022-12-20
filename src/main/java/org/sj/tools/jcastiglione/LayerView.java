@@ -5,6 +5,9 @@ import java.awt.List;
 import java.awt.Checkbox;
 import java.awt.Dimension;
 import java.awt.event.ItemListener;
+
+import org.sj.tools.jcastiglione.gui.JCastiglioneView;
+
 import java.awt.event.ItemEvent;
 import java.awt.FlowLayout;
 

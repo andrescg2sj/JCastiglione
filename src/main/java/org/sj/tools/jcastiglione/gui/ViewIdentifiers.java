@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 public interface ViewIdentifiers {
 	public static final int SEND_BACKGROUND = 1;

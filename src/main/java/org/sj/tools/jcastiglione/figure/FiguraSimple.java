@@ -12,9 +12,9 @@ import java.io.DataOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import org.sj.tools.jcastiglione.ScrollConverter;
 import org.sj.tools.jcastiglione.animation.AnimableVector2D;
 import org.sj.tools.jcastiglione.animation.InterVector2D;
+import org.sj.tools.jcastiglione.gui.ScrollConverter;
 
 class DoubleDim2D extends Dimension2D {
 	double w;

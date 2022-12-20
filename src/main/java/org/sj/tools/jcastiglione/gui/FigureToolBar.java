@@ -1,7 +1,8 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 import java.util.Iterator;
 
+import org.sj.tools.jcastiglione.JCastiglioneDoc;
 import org.sj.tools.jcastiglione.figure.FgPolygon;
 import org.sj.tools.jcastiglione.figure.Figura;
 

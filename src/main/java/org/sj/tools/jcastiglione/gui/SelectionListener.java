@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 public interface SelectionListener {
 	public void onNewSelection(SelectionEvent e);

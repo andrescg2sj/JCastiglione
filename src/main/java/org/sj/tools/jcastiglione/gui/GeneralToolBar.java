@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 import java.awt.Panel;
 import java.awt.Button;
@@ -17,6 +17,7 @@ import java.awt.event.AdjustmentListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.ItemListener;
 
+import org.sj.tools.jcastiglione.JCastiglioneDoc;
 import org.sj.tools.jcastiglione.dialog.AnimationDialog;
 
 import java.awt.event.ItemEvent;

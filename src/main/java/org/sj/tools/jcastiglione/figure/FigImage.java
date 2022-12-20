@@ -17,7 +17,7 @@ import java.io.FileOutputStream;
 
 import javax.imageio.ImageIO;
 
-import org.sj.tools.jcastiglione.ScrollConverter;
+import org.sj.tools.jcastiglione.gui.ScrollConverter;
 
 
 public class FigImage extends FigRectBounded {

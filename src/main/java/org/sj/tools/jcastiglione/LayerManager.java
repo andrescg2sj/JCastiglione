@@ -3,6 +3,7 @@ package org.sj.tools.jcastiglione;
 import java.util.Vector;
 
 import org.sj.tools.jcastiglione.figure.Figura;
+import org.sj.tools.jcastiglione.gui.SelectionItem;
 
 import java.util.Iterator;
 import java.util.List;

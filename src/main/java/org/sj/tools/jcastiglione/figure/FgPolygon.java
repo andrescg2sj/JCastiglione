@@ -11,7 +11,7 @@ import java.io.DataOutputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import org.sj.tools.jcastiglione.ScrollConverter;
+import org.sj.tools.jcastiglione.gui.ScrollConverter;
 
 public class FgPolygon extends FiguraSimple {
 	private Vector2D vertice[];

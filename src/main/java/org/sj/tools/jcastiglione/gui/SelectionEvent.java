@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 public class SelectionEvent {
 	Object selected;

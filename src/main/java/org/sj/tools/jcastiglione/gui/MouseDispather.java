@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 import java.awt.Color;
 import java.awt.Frame;
@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+import org.sj.tools.jcastiglione.Doc;
+import org.sj.tools.jcastiglione.JCastiglioneApp;
+import org.sj.tools.jcastiglione.JCastiglioneDoc;
 import org.sj.tools.jcastiglione.dialog.TextInputDlg;
 import org.sj.tools.jcastiglione.figure.FgPolygon;
 import org.sj.tools.jcastiglione.figure.FigText;

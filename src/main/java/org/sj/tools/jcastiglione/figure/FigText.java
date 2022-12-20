@@ -7,7 +7,7 @@ import java.awt.geom.Rectangle2D;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import org.sj.tools.jcastiglione.ScrollConverter;
+import org.sj.tools.jcastiglione.gui.ScrollConverter;
 
 import math.geom.Vector2D;
 

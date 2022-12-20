@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 import java.awt.Canvas;
 import java.awt.Scrollbar;
@@ -16,6 +16,10 @@ import java.awt.Color;
 import java.awt.Polygon;
 import java.util.Vector;
 
+import org.sj.tools.jcastiglione.Doc;
+import org.sj.tools.jcastiglione.JCastiglioneDoc;
+import org.sj.tools.jcastiglione.Layer;
+import org.sj.tools.jcastiglione.LayerManager;
 import org.sj.tools.jcastiglione.figure.FgPolygon;
 import org.sj.tools.jcastiglione.figure.Figura;
 

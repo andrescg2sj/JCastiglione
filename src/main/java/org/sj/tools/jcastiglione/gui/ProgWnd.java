@@ -1,4 +1,4 @@
-package org.sj.tools.jcastiglione;
+package org.sj.tools.jcastiglione.gui;
 
 
 import guiutil.VentanaUtil;
@@ -23,6 +23,10 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
+import org.sj.tools.jcastiglione.JCastiglioneDoc;
+import org.sj.tools.jcastiglione.Layer;
+import org.sj.tools.jcastiglione.LayerManager;
+import org.sj.tools.jcastiglione.LayerView;
 import org.sj.tools.jcastiglione.io.JCgDocLoader;
 import org.sj.tools.jcastiglione.io.XMLGraf3Doc;
 
