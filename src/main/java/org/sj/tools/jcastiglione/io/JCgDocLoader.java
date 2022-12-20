@@ -32,7 +32,7 @@ import java.util.logging.Logger;
 public class JCgDocLoader extends JCastiglioneDoc {
 	
 	//Logger log = Logger.getLogger(this.getClass().getName());
-	Logger log = Logger.getLogger("Graf3DocLoader");
+	Logger log = Logger.getLogger("JCgDocLoader");
 	
 	FigRectangleLoader rectLoader = new FigRectangleLoader();
 	
