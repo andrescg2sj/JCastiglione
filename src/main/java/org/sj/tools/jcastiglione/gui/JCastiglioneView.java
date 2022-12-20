@@ -76,7 +76,7 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 	/*---------------------------------------------------------------------*/
 	
 
-	LogicScreen getPressedPoint(MouseEvent e) 
+	LogicPoint getPressedPoint(MouseEvent e) 
 	{
 		/* punto en que se ha pulsado */
 		Point p = e.getPoint();
@@ -88,14 +88,14 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 			v = snapToGrid(v);
 			p = region.AbsToScreen(v);
 		}
-		return new LogicScreen(p,v);
+		return new LogicPoint(p,v);
 	}
 	
 	
 	
 	public void newPoly(MouseEvent e)
 	{
-		Point p = getPressedPoint(e).p;
+		Point p = getPressedPoint(e).screenPoint;
 		
 		if(e.getButton() == e.BUTTON1) {
 			Graphics g = getGraphics();
@@ -141,7 +141,7 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 		}
 	}
 	
-	void createNewImage(LogicScreen ls)
+	void createNewImage(LogicPoint ls)
 	{
 		Container cnt = (Container) this.getParent();
 		Frame parent = (Frame) cnt.getParent();
@@ -156,14 +156,14 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 		
 		System.out.println(total);
 		
-		Vector2D centro = ls.v;
+		Vector2D centro = ls.absPosition;
 			
 		JCastiglioneDoc doc = (JCastiglioneDoc) document;
 		doc.createImage(centro, total);
 
 	}
 	
-	void actAddVert(LogicScreen ls)
+	void actAddVert(LogicPoint ls)
 	{
 		System.out.println("add selection.vertice");
 		int i=0;
@@ -175,12 +175,12 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 			a = b;
 			Vector2D u = (Vector2D) pol.getVertice(i+1);
 			b = region.AbsToScreen(u);
-			if(colision(a, b, ls.p)) {
+			if(colision(a, b, ls.screenPoint)) {
 				/* Ã©xito: se pulsÃ³ un segmento */
 				pol.addVertice(i, u);
 				selection.vertice = i + 1;
 				setAccion(AC_MOVE_VERT);
-				gMouse.ptInicial = ls.p;
+				gMouse.ptInicial = ls.screenPoint;
 				return;
 			}
 			i++;
@@ -188,7 +188,7 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 		
 	}
 	
-	void actEditVert(LogicScreen ls)
+	void actEditVert(LogicPoint ls)
 	{
 		int i=0;
 		selection.vertice = -1;
@@ -196,18 +196,18 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 		while(i < pol.numVertices() && selection.vertice == -1) {
 			Vector2D u = (Vector2D) pol.getVertice(i);
 			Point q = region.AbsToScreen(u);
-			if(colision(ls.p,q)) {
+			if(colision(ls.screenPoint,q)) {
 				/* Ã©xito: se encontrÃ³ un selection.vertice */
 				selection.vertice = i;
 				setAccion(AC_MOVE_VERT);
-				gMouse.ptInicial = ls.p;
+				gMouse.ptInicial = ls.screenPoint;
 				return;
 			}
 			i++;
 		}
 	}
 	
-	void actDelVert(LogicScreen ls)
+	void actDelVert(LogicPoint ls)
 	{
 		int i=0;
 		selection.vertice = -1;
@@ -215,7 +215,7 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 		while(i < pol.numVertices() && selection.vertice == -1) {
 			Vector2D u = (Vector2D) pol.getVertice(i);
 			Point q = region.AbsToScreen(u);
-			if(colision(ls.p,q)) {
+			if(colision(ls.screenPoint,q)) {
 				/* Ã©xito: se encontrÃ³ un selection.vertice */
 				pol.borrarVertice(i);
 				repaint();
@@ -227,7 +227,7 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 	}
 	
 	
-	void actSelect(LogicScreen ls, Point mouse)
+	void actSelect(LogicPoint ls, Point mouse)
 	{
 		JCastiglioneDoc d = (JCastiglioneDoc) document;
 		Vector2D w = region.ScreenToAbs(mouse);
@@ -240,7 +240,7 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 				/* si la que estoy pulsando es la seleccionada,
 				 me preparo para moverla */
 			
-				gMouse.ptInicial = ls.p;
+				gMouse.ptInicial = ls.screenPoint;
 				gMouse.ptAnterior = (Point) gMouse.ptInicial.clone();
 				setAccion(AC_SEL_MOVER);
 				
@@ -279,18 +279,18 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 
 	}
 	
-	void releaseNewLine(LogicScreen ls)
+	void releaseNewLine(LogicPoint ls)
 	{
 		Graphics g = getGraphics();
 		if (g != null) {
 			g.setXORMode(Color.GRAY);
-			g.drawLine((int)gMouse.ptInicial.getX(), (int)gMouse.ptInicial.getY(), (int) ls.p.getX(), (int) ls.p.getX());
+			g.drawLine((int)gMouse.ptInicial.getX(), (int)gMouse.ptInicial.getY(), (int) ls.screenPoint.getX(), (int) ls.screenPoint.getX());
 			
 			/* restablecer modo de dibujo normal */
 			g.setPaintMode();
 			
 			/* pintar lÃ­nea final */
-			g.drawLine((int)gMouse.ptInicial.getX(), (int)gMouse.ptInicial.getY(),(int) ls.p.getX(), (int) ls.p.getY());
+			g.drawLine((int)gMouse.ptInicial.getX(), (int)gMouse.ptInicial.getY(),(int) ls.screenPoint.getX(), (int) ls.screenPoint.getY());
 			repaint();
 		}
 
@@ -298,7 +298,7 @@ public class JCastiglioneView extends Canvas implements ScrollView, ViewIdentifi
 		
 		Vector2D p1, p2;
 		p1 = region.ScreenToAbs(gMouse.ptInicial);
-		p2 = region.ScreenToAbs(ls.p);
+		p2 = region.ScreenToAbs(ls.screenPoint);
 		
 		JCastiglioneDoc doc = (JCastiglioneDoc) document;
 		doc.crearLinea(p1, p2);

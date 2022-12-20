@@ -34,7 +34,7 @@ public class MouseDispather extends MouseAdapter implements MouseMotionListener,
 	
 	public void mousePressed(MouseEvent e)
 	{
-		LogicScreen ls = view.getPressedPoint(e);
+		LogicPoint ls = view.getPressedPoint(e);
 		int i=0; // contador general
 		
 		
@@ -42,15 +42,15 @@ public class MouseDispather extends MouseAdapter implements MouseMotionListener,
 		switch(view.getCurrAction())
 		{
 		case AC_NEW_LINEA:
-			ptInicial = ls.p;
+			ptInicial = ls.screenPoint;
 			ptAnterior = ptInicial;
 			break;
 		case AC_NEW_RECT:
-			ptInicial = ls.p;
+			ptInicial = ls.screenPoint;
 			ptAnterior = ptInicial;
 			break;
 		case AC_NEW_TEXT:
-			ptInicial = ls.p;
+			ptInicial = ls.screenPoint;
 			ptAnterior = ptInicial;
 			break;
 		case AC_NEW_POLI:
@@ -65,7 +65,7 @@ public class MouseDispather extends MouseAdapter implements MouseMotionListener,
 		
 		case AC_NEW_VERT:
 			if(e.getButton() == e.BUTTON1) {
-				document.sendMessage(JCastiglioneDoc.MSG_NEW_VERT, ls.p);
+				document.sendMessage(JCastiglioneDoc.MSG_NEW_VERT, ls.screenPoint);
 				System.out.println("VERTICE NUEVO");
 			} else {
 				document.sendMessage(JCastiglioneDoc.MSG_CLOSE_FIGURE, null);
@@ -123,7 +123,7 @@ public class MouseDispather extends MouseAdapter implements MouseMotionListener,
 	
 	public void mouseReleased(MouseEvent e)
 	{
-		LogicScreen ls = view.getPressedPoint(e);
+		LogicPoint ls = view.getPressedPoint(e);
 		
 		switch(view.getCurrAction())
 		{
@@ -132,22 +132,22 @@ public class MouseDispather extends MouseAdapter implements MouseMotionListener,
 			view.setAccion(AC_NINGUNA);
 			break;
 		case AC_NEW_RECT:
-			view.releaseNewRect(ls.p);
+			view.releaseNewRect(ls.screenPoint);
 			view.setAccion(AC_NINGUNA);
 			break;
 		case AC_NEW_TEXT:
-			view.releaseNewText(ls.p);
+			view.releaseNewText(ls.screenPoint);
 			view.setAccion(AC_NINGUNA);
 			break;
 		case AC_SEL_MOVER:
-			view.releaseMove(ls.p);				
+			view.releaseMove(ls.screenPoint);				
 			break;
 		case AC_SELEC_DRAG:
-			view.releaseSelecDrag(ls.p);
+			view.releaseSelecDrag(ls.screenPoint);
 			break;
 		case AC_MOVE_VERT: /* modificar un vertice de un poligono */
 			FgPolygon pol = (FgPolygon) selection.figuraSelected;
-			pol.setVertice(selection.vertice, ls.v);
+			pol.setVertice(selection.vertice, ls.absPosition);
 			view.setAccion(AC_EDIT_VERT);
 			view.repaint();
 			break;
