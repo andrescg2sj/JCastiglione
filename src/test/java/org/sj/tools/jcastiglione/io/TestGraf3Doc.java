@@ -97,10 +97,38 @@ public class TestGraf3Doc {
 			e.printStackTrace();
 			Assert.fail();
 		}
-		
-		
-		
 	}
+	
+	@Test
+	public void testingImportSVG() {
+/*
+		JCgDocLoader docl = new JCgDocLoader();
+		try {
+			docl.loadXML("test/test.xml");
+			Layer ly = docl.getCurrentLayer();
+			assertEquals("num figuras", 1, ly.numFiguras());
+			
+			Figura f = docl.getFigura(0);
+			Assert.assertNotNull(f);
+			if(f instanceof FigRectangle) {
+				
+				FigRectangle r = (FigRectangle) f;
+				checkRectangle(r);
+				
+			} else {
+				Assert.fail("Wrong type of figure.");
+			}
+		} catch(IOException ioe) {
+			Assert.fail(ioe.getMessage());
+		}catch(XMLStreamException xe) {
+			Assert.fail(xe.getMessage());
+		}catch(Exception e) {
+			e.printStackTrace();
+			Assert.fail();
+		}
+		*/
+	}
+
 
 
 	@Test
@@ -115,6 +143,7 @@ public class TestGraf3Doc {
 		}catch(IOException ioe) {
 			
 		}
+		
 	}
 
 	@Deprecated
